@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 public class Boy {
     @Id
     @GeneratedValue
-    private String id;
+    private UUID id;
     private String name;
     private Integer age;
     private String job;
