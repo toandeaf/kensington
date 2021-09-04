@@ -4,6 +4,7 @@ import com.boys.kensington.model.Boy;
 import com.boys.kensington.repository.BoyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,21 +22,21 @@ public class BoyService {
         boy.setJob("Software Man");
         try {
             boyRepository.save(boy);
-        } catch (Exception e ) {
+        } catch (Exception e) {
             return "BOO HOO IT DIDNT WORK";
         }
         return "THAT BOY PERSISTED";
     }
 
     public Boy fetchBoy(String name) {
-        try {
-            List<Boy> boys = boyRepository.findAll();
-            Optional<Boy> potentialBoy = boys.stream()
-                    .filter(boy -> boy.getName().equalsIgnoreCase(name))
-                    .findFirst();
-            return potentialBoy.orElse(new Boy());
-        } catch (Exception e ) {
-            return new Boy();
-        }
+        return boyRepository.findAll()
+                .stream()
+                .filter(boy -> boy.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(new Boy());
+    }
+
+    public Boy createBoyFromScratch(Boy boy) {
+        return boyRepository.save(boy);
     }
 }
