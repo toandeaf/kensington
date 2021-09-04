@@ -2,10 +2,8 @@ package com.boys.kensington.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -18,4 +16,6 @@ public class Boy {
     private String name;
     private Integer age;
     private String job;
+    @OneToMany
+    private List<Lift> lifts;
 }
